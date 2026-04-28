@@ -25,6 +25,10 @@
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "computedHash": "94e81e4b58af16e09f9ad09bf16700c1e154d20fd74e4cf2b5c8e571f75ba393"
+    },
+    "otgu": {
+      "source": "local",
+      "sourceType": "local"
     }
   }
 }

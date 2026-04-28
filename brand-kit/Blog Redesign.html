@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Drafts — Matthew Nicholson</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E0E0C;
+    --cream: #F2EBDD;
+    --accent: #D8351F;
+    --rule: rgba(242,235,221,0.18);
+    --serif: 'Instrument Serif', 'Times New Roman', serif;
+    --sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--cream);
+    font-family: var(--sans); font-size: 16px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── nav ───────────────────────────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 16px 32px;
+    background: var(--ink); border-bottom: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .nav .left { display: flex; gap: 20px; align-items: center; }
+  .nav .mono-mark { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+  .nav .mono-mark .m-serif { font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1; letter-spacing: -0.03em; text-transform: none; }
+  .nav .mono-mark .m-sans { font-family: var(--sans); font-weight: 800; font-size: 22px; line-height: 1; letter-spacing: -0.05em; margin-left: -7px; margin-top: 6px; }
+  .nav .center { display: flex; gap: 32px; }
+  .nav .center a { position: relative; padding: 4px 0; }
+  .nav .center a.active { color: var(--accent); }
+  .nav .center a.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent); }
+  .nav .right { display: flex; gap: 20px; justify-content: flex-end; }
+  .nav .live { display: flex; align-items: center; gap: 6px; opacity: 0.7; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  /* ─── ticker ────────────────────────────────────────────────── */
+  .ticker {
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden; white-space: nowrap;
+    font-family: var(--serif); font-style: italic; font-size: 28px; letter-spacing: -0.01em;
+    padding: 14px 0;
+    color: var(--cream);
+  }
+  .ticker > div { display: inline-block; animation: tick 36s linear infinite; }
+  .ticker .accent { color: var(--accent); }
+  @keyframes tick {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── hero ──────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 80px 32px 48px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .meta-row {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7; margin-bottom: 64px;
+  }
+  .hero h1 {
+    margin: 0; padding: 0;
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(96px, 17vw, 280px);
+    line-height: 0.82; letter-spacing: -0.05em; text-transform: uppercase;
+  }
+  .hero h1 .it {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    text-transform: none; letter-spacing: -0.02em;
+  }
+  .hero h1 .dot { color: var(--accent); }
+  .hero .sub {
+    margin-top: 48px; max-width: 720px;
+    font-family: var(--serif); font-style: italic; font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: -0.01em; line-height: 1.25;
+  }
+  .hero .pillars {
+    margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .hero .pillars span { display: inline-flex; align-items: center; gap: 8px; }
+  .hero .pillars span::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+  /* ─── section header grammar ────────────────────────────────── */
+  section.spec {
+    border-bottom: 1px solid var(--rule);
+    padding: 64px 32px;
+  }
+  section.spec.cream { background: var(--cream); color: var(--ink); border-bottom-color: rgba(14,14,12,0.18); }
+  .section-head {
+    display: grid; grid-template-columns: 240px 1fr auto; align-items: baseline; gap: 32px;
+    margin-bottom: 72px;
+    border-top: 1px solid currentColor; padding-top: 24px;
+  }
+  .section-head .num {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .section-head h2 {
+    margin: 0;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(48px, 6vw, 84px); letter-spacing: -0.02em; line-height: 0.95;
+  }
+  .section-head h2 .alt {
+    font-family: var(--sans); font-style: normal; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.04em;
+  }
+  .section-head .tail {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
+  }
+
+  /* ─── article cards (Grain Archive layout: 2×2, caption-on-image) ── */
+  .articles-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .article {
+    color: inherit; position: relative; display: block;
+    height: 390px;
+    overflow: hidden;
+    border-radius: 18px;
+    transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1);
+  }
+  .article:hover { transform: translateY(-4px); }
+  .article .img {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end;
+  }
+  .article.tech .img { background: linear-gradient(160deg, #1a1614 0%, #0E0E0C 60%), repeating-linear-gradient(135deg, rgba(216,53,31,0.08) 0 14px, transparent 14px 28px); }
+  .article.run  .img { background: linear-gradient(160deg, #2a1410 0%, #0E0E0C 70%); }
+  .article.life .img { background: linear-gradient(160deg, var(--accent), #6e1a0f); }
+  .article.ed   .img { background: linear-gradient(160deg, #161a1f 0%, #0E0E0C 60%); }
+  .article .img-watermark {
+    position: absolute; right: 18px; top: 16px;
+    font-family: var(--serif); font-style: italic; font-size: 56px; line-height: 1;
+    letter-spacing: -0.02em;
+    opacity: 0.18; color: var(--cream);
+  }
+  .article.life .img-watermark { color: rgba(242,235,221,0.55); opacity: 0.7; }
+  /* full-width glass caption bar across bottom of card */
+  .article .caption {
+    position: relative; z-index: 2;
+    width: 100%;
+    background: rgba(14,14,12,0.42);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    color: var(--cream);
+    padding: 12px 14px 14px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .article.life .caption { background: rgba(14,14,12,0.5); }
+  .article .caption h3 {
+    margin: 0;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 17px; line-height: 1.15; letter-spacing: -0.01em;
+    color: var(--cream);
+  }
+  .article .caption h3 .accent { color: var(--accent); }
+  .article.life .caption h3 .accent { color: var(--cream); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .article .caption .meta {
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    display: flex; justify-content: space-between; gap: 12px;
+    color: rgba(242,235,221,0.7);
+  }
+
+  /* ─── view all link (italic serif, à la Grain Archive) ───────── */
+  .view-all {
+    margin-top: 56px;
+    text-align: center;
+    border: 0; background: transparent;
+  }
+  .view-all a {
+    display: inline-flex; align-items: baseline; gap: 14px;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(36px, 4vw, 56px); letter-spacing: -0.02em;
+    color: inherit; text-decoration: none;
+    border-bottom: 1px solid currentColor; padding-bottom: 6px;
+  }
+  .view-all a .count {
+    font-family: var(--mono); font-style: normal; font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; opacity: 0.6;
+    transform: translateY(-12px);
+  }
+
+  /* ─── featured (kinetic) ────────────────────────────────────── */
+  .featured {
+    position: relative;
+    background: var(--ink); color: var(--cream);
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .featured-inner {
+    padding: 96px 32px 80px;
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px;
+    align-items: end;
+  }
+  /* solid plate behind h2 + right column so type doesn't collide with bg */
+  .featured-inner::before {
+    content: ''; position: absolute; inset: 80px 16px 64px 16px;
+    background: var(--ink);
+    box-shadow: 0 0 0 16px var(--ink);
+    z-index: -1;
+  }
+  .featured .label-row {
+    grid-column: 1 / -1;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7; margin-bottom: 48px;
+    border-top: 1px solid var(--rule); padding-top: 24px;
+  }
+  .featured h2 {
+    margin: 0;
+    font-family: var(--sans); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(80px, 12vw, 200px);
+    letter-spacing: -0.05em; line-height: 0.85;
+  }
+  .featured h2 .it {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    text-transform: none; letter-spacing: -0.02em;
+  }
+  .featured .right-col { padding-bottom: 24px; }
+  .featured .right-col .tag {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7; margin-bottom: 16px;
+  }
+  .featured .right-col p {
+    margin: 0 0 24px; font-family: var(--sans); font-size: 18px; line-height: 1.5; max-width: 420px;
+    background: var(--ink); padding: 12px 0; position: relative; z-index: 3;
+  }
+  .featured .right-col .tag, .featured .right-col {
+    position: relative; z-index: 3;
+  }
+  .featured .listen {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream); background: var(--accent); padding: 12px 18px;
+    position: relative; z-index: 3;
+  }
+  /* reverse-stack background */
+  .featured-bg {
+    position: absolute; inset: 0; z-index: 1;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+    opacity: 0.18;
+  }
+  .r-row {
+    white-space: nowrap; overflow: hidden;
+    font-family: var(--sans); font-weight: 800;
+    font-size: clamp(60px, 9vw, 130px); line-height: 1; letter-spacing: -0.04em;
+    color: transparent; -webkit-text-stroke: 1.5px var(--cream);
+  }
+  .r-row.r-hi {
+    color: var(--cream); -webkit-text-stroke: 0;
+    opacity: 0.5;
+  }
+  .r-row > div { display: inline-block; animation-timing-function: linear; animation-iteration-count: infinite; }
+  .r-row.r-r > div { animation-name: rrR; }
+  .r-row.r-l > div { animation-name: rrL; }
+  @keyframes rrR { 0% { transform: translateX(-25%); } 100% { transform: translateX(0%); } }
+  @keyframes rrL { 0% { transform: translateX(0%); } 100% { transform: translateX(-25%); } }
+
+  /* ─── cinema selects table ──────────────────────────────────── */
+  table.archive {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.04em;
+  }
+  table.archive thead tr { border-bottom: 1px solid currentColor; }
+  table.archive th { text-align: left; padding: 16px 0; font-weight: 500; opacity: 0.5; text-transform: uppercase; font-size: 12px; letter-spacing: 0.12em; }
+  table.archive td { padding: 22px 0; border-bottom: 1px solid currentColor; vertical-align: top; }
+  table.archive tr:hover td { background: var(--ink); color: var(--cream); cursor: pointer; }
+  section.spec.cream table.archive tr:hover td .accent-target { color: var(--accent); }
+  table.archive td.title {
+    font-family: var(--serif); font-style: italic; font-size: 28px; letter-spacing: -0.01em;
+    line-height: 1; padding-right: 16px;
+  }
+  table.archive td.year { width: 100px; opacity: 0.7; }
+  table.archive td.tag { width: 200px; text-transform: uppercase; opacity: 0.85; }
+  table.archive td.note { width: 40%; opacity: 0.85; font-family: var(--sans); font-size: 16px; letter-spacing: 0; line-height: 1.4; text-transform: none; }
+
+  /* ─── newsletter ────────────────────────────────────────────── */
+  .newsletter {
+    margin: 64px 32px;
+    background: var(--accent); color: var(--cream);
+    border-radius: 4px;
+    padding: 64px 48px;
+    position: relative;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+    overflow: hidden;
+  }
+  .newsletter::before, .newsletter::after {
+    content: ''; position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--ink);
+  }
+  .newsletter::before { left: 24px; }
+  .newsletter::after { right: 24px; }
+  .newsletter .punches {
+    position: absolute; top: 16px; left: 0; right: 0;
+    display: flex; justify-content: space-around;
+    pointer-events: none;
+  }
+  .newsletter .punches.bot { top: auto; bottom: 16px; }
+  .newsletter .punches span { width: 10px; height: 10px; border-radius: 50%; background: var(--ink); opacity: 0.3; }
+  .newsletter h2 {
+    margin: 0;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(56px, 7vw, 96px); letter-spacing: -0.02em; line-height: 0.95;
+  }
+  .newsletter h2 .alt {
+    font-family: var(--sans); font-style: normal; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.04em;
+  }
+  .newsletter .tag {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.85; margin-bottom: 16px;
+  }
+  .newsletter .form {
+    display: flex; gap: 8px;
+    background: rgba(14,14,12,0.2); padding: 6px;
+    border: 1px solid rgba(14,14,12,0.3);
+  }
+  .newsletter input {
+    flex: 1; background: transparent; border: 0; outline: 0;
+    color: var(--cream); padding: 14px 12px;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.05em;
+  }
+  .newsletter input::placeholder { color: rgba(242,235,221,0.6); }
+  .newsletter button {
+    background: var(--ink); color: var(--cream); border: 0;
+    padding: 14px 24px; cursor: pointer;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .newsletter .small {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; opacity: 0.85; margin-top: 12px;
+  }
+
+  /* ─── footer wordmark ───────────────────────────────────────── */
+  .footer-wordmark {
+    padding: 96px 32px 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .footer-wordmark .meta {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.7; margin-bottom: 48px;
+  }
+  .footer-wordmark .big {
+    font-family: var(--sans); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(96px, 19vw, 320px);
+    line-height: 0.82; letter-spacing: -0.05em;
+  }
+  .footer-wordmark .big .it {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    text-transform: none; letter-spacing: -0.02em;
+  }
+  .footer-wordmark .big .dot { color: var(--accent); }
+  .footer-cols {
+    margin-top: 64px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    border-top: 1px solid var(--rule); padding-top: 32px;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .footer-cols h4 { margin: 0 0 16px; opacity: 0.5; font-weight: 500; font-size: 11px; }
+  .footer-cols ul { list-style: none; margin: 0; padding: 0; }
+  .footer-cols li { padding: 6px 0; }
+  .footer-cols .colophon { line-height: 1.7; opacity: 0.85; text-transform: none; letter-spacing: 0.02em; max-width: 480px; }
+  .footer-cols .colophon em { font-family: var(--serif); font-style: italic; font-size: 16px; }
+  .footer-bottom {
+    margin-top: 64px;
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    opacity: 0.7; padding-top: 24px; border-top: 1px solid var(--rule);
+  }
+
+  @media (max-width: 1100px) {
+    .articles-grid { grid-template-columns: 1fr 1fr; gap: 16px; max-width: 640px; }
+    .featured-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .nav { grid-template-columns: 1fr auto; padding: 12px 16px; }
+    .nav .right { display: none; }
+    .articles-grid { grid-template-columns: 1fr; }
+    .article .caption h3 { font-size: 26px; }
+    .section-head { grid-template-columns: 1fr; }
+    .section-head .tail { display: none; }
+    .newsletter { grid-template-columns: 1fr; padding: 48px 32px; margin: 32px 16px; }
+    table.archive td.note { display: none; }
+    .footer-cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="left">
+    <a href="#" class="mono-mark"><span class="m-serif">M</span><span class="m-sans">N</span> THE&nbsp;DRAFTS</a>
+  </div>
+  <div class="center">
+    <a href="#" class="active">Index</a>
+    <a href="#">Archive</a>
+    <a href="#">About</a>
+    <a href="#">RSS</a>
+  </div>
+  <div class="right">
+    <span class="live"><span class="live-dot"></span> Live · Vol.04</span>
+    <a href="#">Subscribe →</a>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div>
+    <span>Independent writing on tech, running, and lifestyle</span> &nbsp;<span class="accent">●</span>&nbsp;
+    <span>One deep cut at a time</span> &nbsp;<span class="accent">●</span>&nbsp;
+    <span>Mostly true. Always personal.</span> &nbsp;<span class="accent">●</span>&nbsp;
+    <span>Independent writing on tech, running, and lifestyle</span> &nbsp;<span class="accent">●</span>&nbsp;
+    <span>One deep cut at a time</span> &nbsp;<span class="accent">●</span>&nbsp;
+    <span>Mostly true. Always personal.</span> &nbsp;<span class="accent">●</span>&nbsp;
+  </div>
+</div>
+
+<header class="hero">
+  <div class="meta-row">
+    <span>EST. 2024 · VOL.04 · NO.031</span>
+    <span>27/04/26 · DRAFTED IN THE MORNING</span>
+  </div>
+  <h1><span class="it">The</span><br>DRAFTS<span class="dot">.</span></h1>
+  <div class="sub">A little tired, very curious, and genuinely amused by his own life.</div>
+  <div class="pillars">
+    <span>TECH</span>
+    <span>RUNNING</span>
+    <span>LIFESTYLE</span>
+    <span>WEEKLY-ISH</span>
+  </div>
+</header>
+
+<section class="spec">
+  <div class="section-head">
+    <span class="num">NO.01 / RECENT DRAFTS</span>
+    <h2>Latest from <span class="alt">the desk.</span></h2>
+    <span class="tail">04 OF 142 →</span>
+  </div>
+
+  <div class="articles-grid">
+    <a class="article tech" href="#">
+      <div class="img">
+        <span class="img-watermark">tech.</span>
+        <div class="caption">
+          <h3>I bought the <span class="accent">worst</span> laptop on amazon.</h3>
+          <div class="meta"><span>TECH · EP.014</span><span>14 / APR</span></div>
+        </div>
+      </div>
+    </a>
+    <a class="article run" href="#">
+      <div class="img">
+        <span class="img-watermark">run.</span>
+        <div class="caption">
+          <h3>I ran 13.1 miles <span class="accent">badly.</span></h3>
+          <div class="meta"><span>RUNNING · EP.022</span><span>11 / APR</span></div>
+        </div>
+      </div>
+    </a>
+    <a class="article life" href="#">
+      <div class="img">
+        <span class="img-watermark">life.</span>
+        <div class="caption">
+          <h3>A day where I did nothing useful.</h3>
+          <div class="meta"><span>LIFESTYLE · EP.031</span><span>06 / APR</span></div>
+        </div>
+      </div>
+    </a>
+    <a class="article ed" href="#">
+      <div class="img">
+        <span class="img-watermark">notes.</span>
+        <div class="caption">
+          <h3>Why every <span class="accent">desk</span> needs a small lamp.</h3>
+          <div class="meta"><span>EDITOR'S NOTE · EP.029</span><span>02 / APR</span></div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="view-all">
+    <a href="#"><span class="count">142 →</span>View all drafts</a>
+  </div>
+</section>
+
+<!-- featured / kinetic reverse -->
+<section class="featured">
+  <div class="featured-bg">
+    <div class="r-row r-r" style="animation-duration:42s"><div>FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;</div></div>
+    <div class="r-row r-l" style="animation-duration:54s"><div>FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;</div></div>
+    <div class="r-row r-hi r-r" style="animation-duration:48s"><div>FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;</div></div>
+    <div class="r-row r-l" style="animation-duration:50s"><div>FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;</div></div>
+    <div class="r-row r-r" style="animation-duration:46s"><div>FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;FEATURED&nbsp;</div></div>
+  </div>
+  <div class="featured-inner">
+    <div class="label-row">
+      <span>NO.02 / ESSAY OF THE WEEK</span>
+      <span>SLOW READ · 18 MINUTES</span>
+    </div>
+    <h2><span class="it">on</span><br>RUNNING<br>BADLY<span style="color:var(--accent)">.</span></h2>
+    <div class="right-col">
+      <div class="tag">EP.022 · RUNNING · 11 APR</div>
+      <p>A short piece about pacing, mile eleven, and the specific kind of tired where your legs file a formal complaint. Probably the most honest thing I've written this year.</p>
+      <a href="#" class="listen">READ THE ESSAY →</a>
+    </div>
+  </div>
+</section>
+
+<section class="spec cream">
+  <div class="section-head">
+    <span class="num">NO.03 / ARCHIVE</span>
+    <h2>Cinema <span class="alt">selects.</span></h2>
+    <span class="tail">PERSONAL VIEWING LOG</span>
+  </div>
+
+  <table class="archive">
+    <thead>
+      <tr><th>FILM</th><th>YEAR</th><th>MOOD</th><th>WHY WATCH</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="title accent-target">Static Bloom</td><td class="year">2023</td><td class="tag">Hazy, melancholic</td><td class="note">For long nights and the kind of light that leaks under a door.</td></tr>
+      <tr><td class="title accent-target">Quiet Engine</td><td class="year">2022</td><td class="tag">Slow, mechanical</td><td class="note">Watch it when you're trying to figure something out without saying so out loud.</td></tr>
+      <tr><td class="title accent-target">Soft Concrete</td><td class="year">2024</td><td class="tag">Gentle, urban</td><td class="note">For Sunday mornings when the city is still doing its breathing exercises.</td></tr>
+      <tr><td class="title accent-target">Mile Eleven</td><td class="year">2021</td><td class="tag">Tired, hopeful</td><td class="note">If you've ever kept going because stopping felt like more work, this one's for you.</td></tr>
+      <tr><td class="title accent-target">Sleep Mode</td><td class="year">2023</td><td class="tag">Strange, warm</td><td class="note">The kind of film that's better the second time, or maybe you were just paying attention.</td></tr>
+      <tr><td class="title accent-target">Backbencher</td><td class="year">2020</td><td class="tag">Funny, sharp</td><td class="note">Plays well with cheap wine and a friend who texts you reactions in real time.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="newsletter">
+  <div class="punches">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="punches bot">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div>
+    <div class="tag">THE NEWSLETTER · WEEKLY-ISH</div>
+    <h2>Tune into <span class="alt">the signal.</span></h2>
+  </div>
+  <div>
+    <p style="margin: 0 0 16px; font-family: var(--sans); font-size: 17px; line-height: 1.5;">
+      No noise. Just one draft each week — on tech, running, or whatever's keeping me up at night.
+    </p>
+    <div class="form">
+      <input type="email" placeholder="you@yourdomain.com" />
+      <button>SUBSCRIBE</button>
+    </div>
+    <div class="small">
+      ~1,400 readers · No spam, ever · <u>Read past drafts</u>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-wordmark">
+  <div class="meta">
+    <span>END OF INDEX · v1.0</span>
+    <span>27/04/26 · MATTHEW NICHOLSON</span>
+  </div>
+  <div class="big"><span class="it">the</span> DRAFTS<span class="dot">.</span></div>
+
+  <div class="footer-cols">
+    <div class="colophon">
+      <h4>COLOPHON</h4>
+      <em>The Drafts</em> is a personal blog by Matthew Nicholson. Set in Instrument Serif, Geist, and Geist Mono. Built and edited from a desk that probably needs a smaller lamp.
+    </div>
+    <div>
+      <h4>READ</h4>
+      <ul>
+        <li>Index</li>
+        <li>Archive</li>
+        <li>Tags</li>
+        <li>RSS</li>
+      </ul>
+    </div>
+    <div>
+      <h4>ELSEWHERE</h4>
+      <ul>
+        <li>Instagram</li>
+        <li>TikTok</li>
+        <li>YouTube</li>
+        <li>Threads</li>
+      </ul>
+    </div>
+    <div>
+      <h4>CONTACT</h4>
+      <ul>
+        <li>hi@thedrafts.dev</li>
+        <li>Sponsor</li>
+        <li>Press</li>
+        <li>Brand kit ↗</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 MATTHEW NICHOLSON</span>
+    <span>RELAXED · FUNNY · PERSONAL</span>
+  </div>
+</footer>
+
+</body>
+</html>

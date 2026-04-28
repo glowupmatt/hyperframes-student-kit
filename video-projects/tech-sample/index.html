@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Matthew Nicholson — EP.007 AI Coding Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0;background:#0B0F1A;">
+
+<!--
+  EP.007 — I tested every AI coding tool so you don't have to.
+  OTGU Brand System / Cobalt palette (tech category)
+  ─────────────────────────────────────────────────────
+  --ink:    #0B0F1A
+  --cream:  #EEF1F6
+  --accent: #1E4FE0
+  Fonts: Instrument Serif italic · Geist 800 · Geist Mono
+  ─────────────────────────────────────────────────────
+  Scenes:
+    S1  0.0 – 4.5s   Kinetic opener      CURSOR / COPILOT / CLAUDE
+    S2  3.8 – 10.8s  Spec comparison     context / price / hallucination / vibe
+    S3  10.2 – 14.4s Stutter moment      THEY ALL HALLUCINATE.
+    S4  13.8 – 18.3s Face-cam lower-third scrolling ticker + lower-third
+    S5  17.7 – 22.0s Verdict kinetic     JUST / PICK / ONE
+    S6  21.4 – 26.4s Outro card          episode meta + quote + monogram
+-->
+
+<div id="tech-sample"
+     data-composition-id="tech-sample"
+     data-start="0"
+     data-width="1920"
+     data-height="1080">
+
+  <!-- ══════════════════════════════════════════════════════════
+       S1 — KINETIC OPENER  (0 – 4.5s)
+       Cobalt ink bg. Three words punch in: CURSOR / COPILOT / CLAUDE.
+       CLAUDE stays visible at scene end for the s2 crossfade.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s1" class="clip" data-start="0" data-duration="4.5" data-track-index="1"
+       style="position:absolute;inset:0;z-index:1;">
+    <div id="s1-bg" style="position:absolute;inset:0;background:#0B0F1A;"></div>
+
+    <div id="s1-chrome" style="position:absolute;top:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;
+         display:flex;justify-content:space-between;align-items:center;">
+      <span>MATTHEW NICHOLSON ® TECH</span>
+      <span>EP.007 / TECH</span>
+    </div>
+    <div style="position:absolute;top:90px;left:120px;right:120px;
+         height:1px;background:#EEF1F6;opacity:0.15;"></div>
+
+    <!-- CURSOR — Reverse stack (7 scrolling bands, row 3 = highlight) -->
+    <div id="s1-cursor-rev" style="position:absolute;inset:0;display:flex;
+         flex-direction:column;justify-content:center;overflow:hidden;">
+      <div class="rv-row"><div id="cr0" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row"><div id="cr1" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row"><div id="cr2" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row rv-row-hi"><div id="cr3" class="rv-inner" style="color:#EEF1F6;">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row"><div id="cr4" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row"><div id="cr5" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+      <div class="rv-row"><div id="cr6" class="rv-inner rv-stroke-cream">CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · CURSOR · &nbsp;</div></div>
+    </div>
+
+    <!-- COPILOT — kinetic punch (unchanged) -->
+    <div id="s1-w2" style="position:absolute;inset:0;display:flex;align-items:center;
+         justify-content:center;font-family:'Geist',sans-serif;font-weight:800;
+         font-size:240px;letter-spacing:-0.04em;color:#EEF1F6;line-height:1;">
+      COPILOT.
+    </div>
+
+    <!-- CLAUDE — Rise (Up) variant: 7 horizontal bands travel vertically; highlight rises -->
+    <div id="s1-claude-rev" style="position:absolute;inset:0;overflow:hidden;">
+      <div id="cla0" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla1" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla2" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla3" class="rv-rise-row rv-rise-row-hi"><div class="rv-inner" style="color:#1E4FE0;">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla4" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla5" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+      <div id="cla6" class="rv-rise-row rv-stroke-accent"><div class="rv-inner">CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · CLAUDE · &nbsp;</div></div>
+    </div>
+
+    <div style="position:absolute;bottom:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.4;
+         display:flex;justify-content:space-between;">
+      <span>AI CODING TOOLS — 2026</span>
+      <span>● TECH · RUNNING · LIFESTYLE</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       S2 — SPEC COMPARISON  (3.8 – 10.8s)
+       Cobalt ink bg fades over s1. Comparison table staggered in.
+       CLAUDE column in accent. Honest, funny data.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s2" class="clip" data-start="3.8" data-duration="7.0" data-track-index="2"
+       style="position:absolute;inset:0;z-index:2;">
+    <div id="s2-bg" style="position:absolute;inset:0;background:#0B0F1A;"></div>
+
+    <div style="position:absolute;top:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.5;
+         display:flex;justify-content:space-between;">
+      <span>MATTHEW NICHOLSON ® TECH</span>
+      <span>EP.007 / TECH</span>
+    </div>
+    <div style="position:absolute;top:90px;left:120px;right:120px;
+         height:1px;background:#EEF1F6;opacity:0.15;"></div>
+
+    <div style="width:100%;height:100%;padding:120px 120px 80px;
+         box-sizing:border-box;display:flex;flex-direction:column;gap:36px;">
+
+      <div id="s2-eyebrow"
+           style="font-family:'Instrument Serif',serif;font-style:italic;
+                  font-size:80px;letter-spacing:-0.02em;line-height:1;color:#EEF1F6;">
+        okay so here's the breakdown.
+      </div>
+
+      <!-- Comparison table: label col + 3 tool cols -->
+      <div id="s2-table"
+           style="flex:1;display:grid;grid-template-columns:300px 1fr 1fr 1fr;
+                  align-content:start;">
+
+        <!-- Header -->
+        <div class="th-lbl"></div>
+        <div id="s2-h1" class="th-tool"
+             style="font-family:'Geist',sans-serif;font-weight:800;font-size:34px;
+                    letter-spacing:0.06em;text-transform:uppercase;color:#EEF1F6;
+                    padding:14px 28px;border-bottom:1px solid rgba(238,241,246,0.2);">
+          CURSOR
+        </div>
+        <div id="s2-h2" class="th-tool"
+             style="font-family:'Geist',sans-serif;font-weight:800;font-size:34px;
+                    letter-spacing:0.06em;text-transform:uppercase;color:#EEF1F6;
+                    padding:14px 28px;border-bottom:1px solid rgba(238,241,246,0.2);">
+          COPILOT
+        </div>
+        <div id="s2-h3" class="th-tool th-accent"
+             style="font-family:'Geist',sans-serif;font-weight:800;font-size:34px;
+                    letter-spacing:0.06em;text-transform:uppercase;color:#1E4FE0;
+                    padding:14px 28px;
+                    border-top:2px solid #1E4FE0;
+                    border-bottom:1px solid rgba(30,79,224,0.35);">
+          CLAUDE
+        </div>
+
+        <!-- Row 1: Context -->
+        <div id="s2-r1a" class="td-lbl"
+             style="font-family:'Geist Mono',monospace;font-size:24px;
+                    letter-spacing:0.06em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.55;
+                    padding:18px 0;border-bottom:1px solid rgba(238,241,246,0.1);">
+          CONTEXT
+        </div>
+        <div id="s2-r1b" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          50K
+        </div>
+        <div id="s2-r1c" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          64K
+        </div>
+        <div id="s2-r1d" class="td-val td-accent"
+             style="font-family:'Geist',sans-serif;font-weight:800;font-size:32px;
+                    color:#1E4FE0;padding:18px 28px;
+                    background:rgba(30,79,224,0.07);
+                    border-bottom:1px solid rgba(30,79,224,0.2);">
+          200K
+        </div>
+
+        <!-- Row 2: Price -->
+        <div id="s2-r2a" class="td-lbl"
+             style="font-family:'Geist Mono',monospace;font-size:24px;
+                    letter-spacing:0.06em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.55;
+                    padding:18px 0;border-bottom:1px solid rgba(238,241,246,0.1);">
+          PRICE / MO
+        </div>
+        <div id="s2-r2b" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          $20
+        </div>
+        <div id="s2-r2c" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          $19
+        </div>
+        <div id="s2-r2d" class="td-val td-accent"
+             style="font-family:'Geist',sans-serif;font-weight:800;font-size:32px;
+                    color:#1E4FE0;padding:18px 28px;
+                    background:rgba(30,79,224,0.07);
+                    border-bottom:1px solid rgba(30,79,224,0.2);">
+          $20
+        </div>
+
+        <!-- Row 3: Hallucination — the honest row -->
+        <div id="s2-r3a" class="td-lbl"
+             style="font-family:'Geist Mono',monospace;font-size:24px;
+                    letter-spacing:0.06em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.55;
+                    padding:18px 0;border-bottom:1px solid rgba(238,241,246,0.1);">
+          HALLUCINATION
+        </div>
+        <div id="s2-r3b" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          MEDIUM
+        </div>
+        <div id="s2-r3c" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:32px;
+                    color:#EEF1F6;padding:18px 28px;
+                    border-bottom:1px solid rgba(238,241,246,0.1);">
+          MEDIUM
+        </div>
+        <div id="s2-r3d" class="td-val td-accent"
+             style="font-family:'Instrument Serif',serif;font-style:italic;
+                    font-size:30px;color:#1E4FE0;padding:18px 28px;
+                    background:rgba(30,79,224,0.07);
+                    border-bottom:1px solid rgba(30,79,224,0.2);">
+          also medium
+        </div>
+
+        <!-- Row 4: Vibe — the punchline -->
+        <div id="s2-r4a" class="td-lbl"
+             style="font-family:'Geist Mono',monospace;font-size:24px;
+                    letter-spacing:0.06em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.55;
+                    padding:18px 0;">
+          VIBE
+        </div>
+        <div id="s2-r4b" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:26px;
+                    color:#EEF1F6;opacity:0.7;padding:18px 28px;">
+          AUTOCOMPLETE-BRAINED
+        </div>
+        <div id="s2-r4c" class="td-val"
+             style="font-family:'Geist',sans-serif;font-weight:700;font-size:26px;
+                    color:#EEF1F6;opacity:0.7;padding:18px 28px;">
+          FINE I GUESS
+        </div>
+        <div id="s2-r4d" class="td-val td-accent"
+             style="font-family:'Instrument Serif',serif;font-style:italic;
+                    font-size:30px;color:#1E4FE0;padding:18px 28px;
+                    background:rgba(30,79,224,0.07);">
+          has opinions
+        </div>
+
+      </div><!-- /s2-table -->
+    </div><!-- /content -->
+  </div><!-- /s2 -->
+
+  <!-- ══════════════════════════════════════════════════════════
+       S3 — STUTTER MOMENT  (10.2 – 14.4s)
+       Ink bg. Cream text. "THEY ALL HALLUCINATE." stutter-animates.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s3" class="clip" data-start="10.2" data-duration="4.2" data-track-index="3"
+       style="position:absolute;inset:0;z-index:3;">
+    <div id="s3-bg" style="position:absolute;inset:0;background:#0B0F1A;"></div>
+
+    <div style="position:absolute;top:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.5;
+         display:flex;justify-content:space-between;">
+      <span>MATTHEW NICHOLSON ® TECH</span>
+      <span>EP.007 / TECH</span>
+    </div>
+
+    <!-- Stutter letters: THEY ALL HALLUCINATE. -->
+    <div id="s3-stutter"
+         style="position:absolute;inset:0;display:flex;align-items:center;
+                justify-content:center;flex-wrap:wrap;
+                padding:120px;box-sizing:border-box;
+                font-family:'Geist',sans-serif;font-weight:800;
+                font-size:148px;letter-spacing:-0.03em;line-height:1;
+                color:#EEF1F6;">
+      <!-- Each letter is a span for individual stagger animation.
+           Spaces are non-animated inline-block spans with width. -->
+      <span class="sl">T</span><span class="sl">H</span><span class="sl">E</span><span class="sl">Y</span
+      ><span class="sp"> </span
+      ><span class="sl">A</span><span class="sl">L</span><span class="sl">L</span
+      ><span class="sp"> </span
+      ><span class="sl">H</span><span class="sl">A</span><span class="sl">L</span
+      ><span class="sl">L</span><span class="sl">U</span><span class="sl">C</span
+      ><span class="sl">I</span><span class="sl">N</span><span class="sl">A</span
+      ><span class="sl">T</span><span class="sl">E</span
+      ><span class="sl" style="color:#1E4FE0;">.</span>
+    </div>
+
+    <div style="position:absolute;bottom:48px;left:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.4;">
+      // the honest take
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       S4 — FACE-CAM + LOWER-THIRD  (13.8 – 18.3s)
+       Ink bg. Scrolling name ticker at low opacity behind face-cam.
+       Lower-third: episode meta + italic serif quote.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s4" class="clip" data-start="13.8" data-duration="4.5" data-track-index="4"
+       style="position:absolute;inset:0;z-index:4;">
+    <div id="s4-bg" style="position:absolute;inset:0;background:#0B0F1A;"></div>
+
+    <!-- Scrolling name ticker — atmospheric, low opacity -->
+    <div id="s4-ticker"
+         style="position:absolute;bottom:200px;left:0;right:0;
+                overflow:hidden;white-space:nowrap;
+                font-family:'Instrument Serif',serif;font-style:italic;
+                font-size:120px;letter-spacing:-0.02em;color:#EEF1F6;opacity:0.08;">
+      <div id="s4-ticker-inner">
+        matthew · matthew · matthew · matthew · matthew · matthew ·&nbsp;
+        matthew · matthew · matthew · matthew · matthew · matthew ·&nbsp;
+        matthew · matthew · matthew · matthew · matthew · matthew ·&nbsp;
+      </div>
+    </div>
+
+    <!-- Face-cam placeholder: full-frame indicator -->
+    <div id="s4-facecam"
+         style="position:absolute;top:80px;left:120px;right:120px;bottom:240px;
+                border:1px dashed rgba(238,241,246,0.15);
+                display:flex;align-items:center;justify-content:center;">
+      <div style="font-family:'Geist Mono',monospace;font-size:22px;
+           letter-spacing:0.1em;text-transform:uppercase;
+           color:#EEF1F6;opacity:0.2;">
+        [ FACE CAM ]
+      </div>
+    </div>
+
+    <!-- Lower-third strip -->
+    <div id="s4-lt"
+         style="position:absolute;bottom:0;left:0;right:0;
+                background:rgba(11,15,26,0.85);
+                backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+                padding:28px 120px 36px;
+                border-top:1px solid rgba(238,241,246,0.1);">
+      <div id="s4-lt-meta"
+           style="font-family:'Geist Mono',monospace;font-size:20px;
+                  letter-spacing:0.1em;text-transform:uppercase;
+                  color:#EEF1F6;opacity:0.6;margin-bottom:12px;">
+        EP.007 · TECH · AI CODING TOOLS
+      </div>
+      <div id="s4-lt-quote"
+           style="font-family:'Instrument Serif',serif;font-style:italic;
+                  font-size:72px;letter-spacing:-0.02em;line-height:1;color:#EEF1F6;">
+        I tested them all. they're <span style="color:#1E4FE0;">all mid.</span>
+      </div>
+      <div id="s4-lt-byline"
+           style="font-family:'Geist Mono',monospace;font-size:18px;
+                  letter-spacing:0.1em;text-transform:uppercase;
+                  color:#EEF1F6;opacity:0.4;margin-top:14px;">
+        THEDRAFTS.COM · @GLOWUPMATT
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       S5 — VERDICT KINETIC  (17.7 – 22.0s)
+       Accent (cobalt) bg. Cream text. JUST / PICK / ONE.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s5" class="clip" data-start="17.7" data-duration="4.3" data-track-index="5"
+       style="position:absolute;inset:0;z-index:5;">
+    <div id="s5-bg" style="position:absolute;inset:0;background:#1E4FE0;"></div>
+
+    <div style="position:absolute;top:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.6;
+         display:flex;justify-content:space-between;">
+      <span>MATTHEW NICHOLSON ® TECH</span>
+      <span>EP.007 / VERDICT</span>
+    </div>
+
+    <div id="s5-v1"
+         style="position:absolute;inset:0;display:flex;align-items:center;
+                justify-content:center;font-family:'Geist',sans-serif;
+                font-weight:800;font-size:280px;letter-spacing:-0.04em;
+                color:#EEF1F6;line-height:1;">
+      JUST.
+    </div>
+    <div id="s5-v2"
+         style="position:absolute;inset:0;display:flex;align-items:center;
+                justify-content:center;font-family:'Geist',sans-serif;
+                font-weight:800;font-size:280px;letter-spacing:-0.04em;
+                color:#EEF1F6;line-height:1;">
+      PICK.
+    </div>
+    <div id="s5-v3"
+         style="position:absolute;inset:0;display:flex;align-items:center;
+                justify-content:center;font-family:'Geist',sans-serif;
+                font-weight:800;font-size:280px;letter-spacing:-0.04em;
+                color:#EEF1F6;line-height:1;">
+      ONE.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       S6 — OUTRO CARD  (21.4 – 26.4s)
+       Ink bg. Episode meta + italic serif quote + MN monogram.
+       Final scene: elements fade out to black.
+       ══════════════════════════════════════════════════════════ -->
+  <div id="s6" class="clip" data-start="21.4" data-duration="5.0" data-track-index="6"
+       style="position:absolute;inset:0;z-index:6;">
+    <div id="s6-bg" style="position:absolute;inset:0;background:#0B0F1A;"></div>
+
+    <div style="position:absolute;top:48px;left:120px;right:120px;
+         font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:0.08em;
+         text-transform:uppercase;color:#EEF1F6;opacity:0.5;
+         display:flex;justify-content:space-between;">
+      <span>MATTHEW NICHOLSON ® TECH</span>
+      <span>EP.007 / TECH</span>
+    </div>
+    <div style="position:absolute;top:90px;left:120px;right:120px;
+         height:1px;background:#EEF1F6;opacity:0.15;"></div>
+
+    <div id="s6-content"
+         style="width:100%;height:100%;padding:140px 120px 80px;
+                box-sizing:border-box;display:flex;flex-direction:column;
+                justify-content:space-between;">
+
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div id="s6-meta"
+             style="font-family:'Geist Mono',monospace;font-size:24px;
+                    letter-spacing:0.1em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.55;">
+          EP.007 · TECH · AI CODING TOOLS
+        </div>
+        <div id="s6-quote"
+             style="font-family:'Instrument Serif',serif;font-style:italic;
+                    font-size:120px;letter-spacing:-0.025em;line-height:0.95;
+                    color:#EEF1F6;max-width:1400px;">
+          just pick one. they're all <span id="s6-accent-word" style="color:#1E4FE0;">cooked</span> anyway.
+        </div>
+      </div>
+
+      <div id="s6-footer"
+           style="display:flex;justify-content:space-between;align-items:flex-end;
+                  padding-bottom:16px;">
+        <!-- MN Monogram -->
+        <div id="s6-monogram"
+             style="display:inline-flex;align-items:center;position:relative;line-height:1;">
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;
+                       font-size:96px;color:#EEF1F6;position:relative;z-index:1;
+                       letter-spacing:-0.04em;">M</span>
+          <span style="font-family:'Geist',sans-serif;font-weight:800;
+                       font-size:68px;color:#EEF1F6;
+                       margin-left:-17px;margin-top:17px;
+                       position:relative;z-index:2;letter-spacing:-0.05em;">N</span>
+        </div>
+        <div id="s6-byline"
+             style="font-family:'Geist Mono',monospace;font-size:20px;
+                    letter-spacing:0.1em;text-transform:uppercase;
+                    color:#EEF1F6;opacity:0.45;">
+          THEDRAFTS.COM · @GLOWUPMATT
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       STYLES
+       ══════════════════════════════════════════════════════════ -->
+  <style>
+    * { box-sizing: border-box; }
+
+    /* Stutter letter spans */
+    .sl { display: inline-block; }
+    /* Space spans — fixed width so layout is stable during animation */
+    .sp { display: inline-block; width: 0.32em; }
+
+    /* Reverse stack rows */
+    .rv-row {
+      overflow: hidden;
+      white-space: nowrap;
+      opacity: 0.78;
+    }
+    .rv-row-hi {
+      opacity: 1;
+      background: rgba(238,241,246,0.07);
+      padding: 5px 0;
+      margin: 3px 0;
+    }
+    .rv-row-hi-accent {
+      background: rgba(30,79,224,0.1);
+    }
+    .rv-inner {
+      display: inline-block;
+      font-family: 'Geist', sans-serif;
+      font-weight: 800;
+      font-size: 84px;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+    /* Stroke-only (outline) rows */
+    .rv-stroke-cream {
+      color: transparent;
+      -webkit-text-stroke: 1.5px #EEF1F6;
+    }
+    .rv-stroke-accent {
+      color: transparent;
+      -webkit-text-stroke: 1.5px #1E4FE0;
+    }
+
+    /* Rise (Up) variant — rows positioned absolutely, GSAP drives y */
+    .rv-rise-row {
+      position: absolute;
+      width: 100%;
+      white-space: nowrap;
+      opacity: 0.78;
+    }
+    .rv-rise-row-hi {
+      opacity: 1;
+      background: rgba(30,79,224,0.1);
+      padding: 5px 0;
+    }
+  </style>
+
+  <!-- ══════════════════════════════════════════════════════════
+       GSAP TIMELINE
+       ══════════════════════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+
+    const tl = gsap.timeline({ paused: true });
+
+    // ─── S1: Kinetic/Reverse opener ──────────────────────────────────────────
+    // Chrome label fades in
+    tl.from('#s1-chrome', { autoAlpha: 0, y: -10, duration: 0.4, ease: 'power2.out' }, 0.15);
+
+    // Start everything hidden
+    tl.set('#s1-cursor-rev, #s1-w2, #s1-claude-rev', { autoAlpha: 0 }, 0);
+
+    // ── CURSOR Reverse: set phase-offset start positions, then scroll ──
+    // Even IDs scroll right (x increases), odd scroll left (x decreases)
+    tl.set('#cr0', { x: '-10%' }, 0.1);  tl.to('#cr0', { x: '14%',  duration: 3,   ease: 'none' }, 0.1);
+    tl.set('#cr1', { x: '-22%' }, 0.1);  tl.to('#cr1', { x: '-47%', duration: 3.5, ease: 'none' }, 0.1);
+    tl.set('#cr2', { x: '-7%'  }, 0.1);  tl.to('#cr2', { x: '18%',  duration: 3,   ease: 'none' }, 0.1);
+    tl.set('#cr3', { x: '-14%' }, 0.1);  tl.to('#cr3', { x: '11%',  duration: 3,   ease: 'none' }, 0.1); // highlight → right
+    tl.set('#cr4', { x: '0%'   }, 0.1);  tl.to('#cr4', { x: '-25%', duration: 3.5, ease: 'none' }, 0.1);
+    tl.set('#cr5', { x: '-19%' }, 0.1);  tl.to('#cr5', { x: '6%',   duration: 3,   ease: 'none' }, 0.1);
+    tl.set('#cr6', { x: '-6%'  }, 0.1);  tl.to('#cr6', { x: '-31%', duration: 4,   ease: 'none' }, 0.1);
+
+    // Fade CURSOR Reverse in, then out
+    tl.to('#s1-cursor-rev', { autoAlpha: 1, duration: 0.32, ease: 'power2.out' }, 0.3);
+    tl.to('#s1-cursor-rev', { autoAlpha: 0, duration: 0.28, ease: 'power2.in'  }, 1.22);
+
+    // ── COPILOT: kinetic punch ──
+    tl.fromTo('#s1-w2',
+      { scale: 0.42, autoAlpha: 0 },
+      { scale: 1, autoAlpha: 1, duration: 0.45, ease: 'back.out(1.7)' },
+      1.55);
+    tl.to('#s1-w2', { scale: 1.12, autoAlpha: 0, duration: 0.22, ease: 'power3.in' }, 2.52);
+
+    // ── CLAUDE Rise (Up): bands travel vertically; y values are pixel positions ──
+    // Phase-offset start positions so bands appear mid-scroll at fade-in (t=2.78).
+    // At hero frame (t=3.0s): rows land at y≈50,195,340,485,630,775,920 — evenly spread.
+    // Even rows (0,2,5) rise up; odd rows (1,4,6) fall down; cla3 (hi) rises dominant.
+    tl.set('#cla0', { y:  100 }, 2.5);  tl.to('#cla0', { y: -200, duration: 3,   ease: 'none' }, 2.5); // up
+    tl.set('#cla1', { y:  155 }, 2.5);  tl.to('#cla1', { y:  435, duration: 3.5, ease: 'none' }, 2.5); // down
+    tl.set('#cla2', { y:  375 }, 2.5);  tl.to('#cla2', { y:  165, duration: 3,   ease: 'none' }, 2.5); // up
+    tl.set('#cla3', { y:  535 }, 2.5);  tl.to('#cla3', { y:  235, duration: 3,   ease: 'none' }, 2.5); // highlight → up
+    tl.set('#cla4', { y:  590 }, 2.5);  tl.to('#cla4', { y:  870, duration: 3.5, ease: 'none' }, 2.5); // down
+    tl.set('#cla5', { y:  810 }, 2.5);  tl.to('#cla5', { y:  600, duration: 3,   ease: 'none' }, 2.5); // up
+    tl.set('#cla6', { y:  880 }, 2.5);  tl.to('#cla6', { y: 1200, duration: 4,   ease: 'none' }, 2.5); // down
+
+    // Fade CLAUDE Reverse in — stays visible; s2-bg crossfades over it
+    tl.to('#s1-claude-rev', { autoAlpha: 1, duration: 0.38, ease: 'power2.out' }, 2.78);
+
+    // ─── S1 → S2 push from right ────────────────────────────────────────────
+    tl.set('#s2', { x: '100%' }, 3.8);
+    tl.to('#s2', { x: '0%', duration: 0.6, ease: 'expo.out' }, 3.8);
+
+    // ─── S2: Spec comparison ────────────────────────────────────────────────
+    tl.from('#s2-eyebrow', { y: 36, autoAlpha: 0, duration: 0.55, ease: 'expo.out' }, 4.1);
+
+    // Table headers stagger in
+    tl.from('#s2-h1, #s2-h2, #s2-h3',
+      { x: -28, autoAlpha: 0, duration: 0.4, ease: 'power3.out', stagger: 0.1 },
+      4.55);
+
+    // Rows stagger in — label + three cells per row
+    const rowIds = [
+      ['#s2-r1a', '#s2-r1b', '#s2-r1c', '#s2-r1d'],
+      ['#s2-r2a', '#s2-r2b', '#s2-r2c', '#s2-r2d'],
+      ['#s2-r3a', '#s2-r3b', '#s2-r3c', '#s2-r3d'],
+      ['#s2-r4a', '#s2-r4b', '#s2-r4c', '#s2-r4d'],
+    ];
+    rowIds.forEach((row, i) => {
+      tl.from(row.join(','),
+        { x: -20, autoAlpha: 0, duration: 0.35, ease: 'power2.out', stagger: 0.07 },
+        5.1 + i * 0.28);
+    });
+
+    // ─── S2 → S3 rise from below ────────────────────────────────────────────
+    tl.set('#s3', { y: '100%' }, 10.2);
+    tl.to('#s3', { y: '0%', duration: 0.45, ease: 'expo.out' }, 10.2);
+
+    // ─── S3: Stutter moment ──────────────────────────────────────────────────
+    // Entrance: letters cascade in from below
+    tl.from('.sl', { y: 44, autoAlpha: 0, duration: 0.38, ease: 'power3.out', stagger: 0.03 }, 10.45);
+
+    // Stutter: letters oscillate up/down — finite repeat
+    // 4 repeats × 0.14s × 2 (yoyo) = 1.12s per letter total
+    tl.to('.sl', {
+      y: -20,
+      duration: 0.14,
+      ease: 'power2.in',
+      repeat: 4,
+      yoyo: true,
+      stagger: { each: 0.07 }
+    }, 11.3);
+
+    // ─── S3 → S4 push from left (pan to speaker) ────────────────────────────
+    tl.set('#s4', { x: '-100%' }, 13.8);
+    tl.to('#s4', { x: '0%', duration: 0.55, ease: 'power3.out' }, 13.8);
+
+    // ─── S4: Face-cam lower-third ────────────────────────────────────────────
+    // Scrolling ticker: single long tween, no repeat needed (4.5s window < 18s cycle)
+    tl.set('#s4-ticker-inner', { x: '0%' }, 13.8);
+    tl.to('#s4-ticker-inner', { x: '-33.33%', duration: 18, ease: 'none' }, 13.8);
+
+    // Face cam placeholder
+    tl.from('#s4-facecam', { scale: 0.97, autoAlpha: 0, duration: 0.5, ease: 'expo.out' }, 14.1);
+
+    // Lower-third slides up
+    tl.from('#s4-lt', { y: 48, autoAlpha: 0, duration: 0.5, ease: 'expo.out' }, 14.4);
+    tl.from('#s4-lt-meta', { autoAlpha: 0, duration: 0.3, ease: 'power2.out' }, 14.55);
+    tl.from('#s4-lt-quote', { y: 16, autoAlpha: 0, duration: 0.45, ease: 'expo.out' }, 14.75);
+    tl.from('#s4-lt-byline', { autoAlpha: 0, duration: 0.35, ease: 'power2.out' }, 15.1);
+
+    // ─── S4 → S5 verdict slams up from below ────────────────────────────────
+    tl.set('#s5', { y: '100%' }, 17.7);
+    tl.to('#s5', { y: '0%', duration: 0.4, ease: 'expo.out' }, 17.7);
+
+    // ─── S5: Verdict kinetic ─────────────────────────────────────────────────
+    tl.set('#s5-v1, #s5-v2, #s5-v3', { autoAlpha: 0 }, 17.7);
+
+    // JUST.
+    tl.fromTo('#s5-v1',
+      { scale: 0.42, autoAlpha: 0 },
+      { scale: 1, autoAlpha: 1, duration: 0.45, ease: 'back.out(1.7)' },
+      17.95);
+    tl.to('#s5-v1', { scale: 1.12, autoAlpha: 0, duration: 0.22, ease: 'power3.in' }, 18.9);
+
+    // PICK.
+    tl.fromTo('#s5-v2',
+      { scale: 0.42, autoAlpha: 0 },
+      { scale: 1, autoAlpha: 1, duration: 0.45, ease: 'back.out(1.7)' },
+      19.15);
+    tl.to('#s5-v2', { scale: 1.12, autoAlpha: 0, duration: 0.22, ease: 'power3.in' }, 20.1);
+
+    // ONE. — stays visible through end of s5
+    tl.fromTo('#s5-v3',
+      { scale: 0.42, autoAlpha: 0 },
+      { scale: 1, autoAlpha: 1, duration: 0.5, ease: 'back.out(1.7)' },
+      20.35);
+
+    // ─── S5 → S6 zoom-out settle ────────────────────────────────────────────
+    tl.set('#s6', { scale: 1.06, autoAlpha: 0 }, 21.4);
+    tl.to('#s6', { scale: 1, autoAlpha: 1, duration: 0.65, ease: 'power3.out' }, 21.4);
+
+    // ─── S6: Outro card ──────────────────────────────────────────────────────
+    tl.from('#s6-meta', { autoAlpha: 0, y: -10, duration: 0.38, ease: 'power2.out' }, 21.7);
+    tl.from('#s6-quote', { y: 30, autoAlpha: 0, duration: 0.6, ease: 'expo.out' }, 21.95);
+    tl.from('#s6-monogram', { autoAlpha: 0, scale: 0.88, duration: 0.45, ease: 'back.out(1.4)' }, 22.45);
+    tl.from('#s6-byline', { autoAlpha: 0, duration: 0.4, ease: 'power2.out' }, 22.75);
+
+    // Final fade to black — only allowed on the last scene
+    tl.to('#s6-content', { autoAlpha: 0, y: -12, duration: 0.7, ease: 'power2.in' }, 25.1);
+    tl.to('#s6-bg', { backgroundColor: '#000000', duration: 0.9, ease: 'power2.in' }, 25.2);
+
+    // Pad timeline to full duration
+    tl.set({}, {}, 26.4);
+
+    window.__timelines['tech-sample'] = tl;
+  </script>
+
+</div>
+</body>
+</html>

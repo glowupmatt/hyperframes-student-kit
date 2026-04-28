@@ -32,6 +32,7 @@ If `MOTION_PHILOSOPHY.md` is missing from the workspace root, stop and ask Nate 
 
 | Skill                    | Command                    | When to use                                                                               |
 | ------------------------ | -------------------------- | ----------------------------------------------------------------------------------------- |
+| `otgu`                   | `/otgu`                    | **Start here for Matthew Nicholson content** — enforces brand palette, fonts, motion principles, and voice rules before any composition work |
 | `hyperframes`            | `/hyperframes`             | Authoring/editing compositions, captions, TTS, audio-reactive animation, transitions      |
 | `hyperframes-cli`        | `/hyperframes-cli`         | CLI commands: `init`, `add`, `lint`, `preview`, `render`, `transcribe`, `tts`, `doctor`   |
 | `gsap`                   | `/gsap`                    | GSAP animation — timelines, easing, stagger, ScrollTrigger, plugins, performance          |
@@ -39,6 +40,11 @@ If `MOTION_PHILOSOPHY.md` is missing from the workspace root, stop and ask Nate 
 | `website-to-hyperframes` | `/website-to-hyperframes`  | Turning a URL into a composition (7-step capture-to-video pipeline)                       |
 
 Not present? `npx skills add heygen-com/hyperframes --yes` then reopen this directory.
+
+### Workflow for Matthew Nicholson content
+
+Always invoke in this order: `/otgu` → `/hyperframes` → build.
+`/otgu` locks the brand (palette, fonts, motion principle, voice). `/hyperframes` handles the composition mechanics.
 
 ## Commands
 

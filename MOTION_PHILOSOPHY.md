@@ -158,6 +158,7 @@ Notice the **rule of threes** everywhere: 3 benefits, 3 surfaces, 3 product name
 | **Flash-through-white** | Major act break | `npx hyperframes add flash-through-white` |
 | **Swirl-vortex** | Product-family rotations (Dash/API/SDK) | `npx hyperframes add swirl-vortex` |
 | **Hard cut on action** | When a whip-streak peaks — that's the moment to cut | Just align scene `data-start` with the streak's mid-frame |
+| **Directional scene merge** | Default for narrative/editorial content (no whip block available) | `tl.set('#s', { x: '100%' }, t); tl.to('#s', { x: '0%', duration: 0.55, ease: 'expo.out' }, t)` — animate the clip container, not a bg div. Push from right/left, rise from below, or zoom-settle for outros. Scenes stay fully visible while the next panel arrives. |
 
 ### 2.6 Pacing Discipline
 
@@ -527,7 +528,7 @@ tl.to(wrap, { y: -150, filter: "blur(30px)", duration: 0.33, ease: "power2.in" }
 
 - [ ] **Average scene length ≤ 2s** in mid-section (intro/outro can hold longer)
 - [ ] **No dead air > 1s** anywhere except the deliberate hold moments
-- [ ] **Every transition uses motion** (whip, morph, slide, recolor — no hard fades)
+- [ ] **Every transition uses directional motion** (whip, morph, push, rise, zoom-settle, recolor — no pure opacity crossfades). The incoming scene must arrive with spatial energy — push from x/y or zoom-settle. A `fromTo(bg, { autoAlpha: 0 }, { autoAlpha: 1 })` alone is not a transition.
 - [ ] **Color palette ≤ 5 active hues** total in the whole piece, each with a meaning
 - [ ] **Every text block uses chrome gradient + halo** — no flat white
 - [ ] **Background grid + crosshairs present in ≥ 60% of scenes** (the unifying texture)
@@ -616,6 +617,7 @@ Before you ship any motion graphic, ask:
 
 - ❌ **Centered, axis-aligned, motionless text fades.** This is the lowest motion-graphics tier. Always add scale, blur, or directional energy.
 - ❌ **Hard cuts between scenes.** Every cut needs a transition element bridging it (streak, morph, wipe, shader).
+- ❌ **Pure opacity crossfades between scenes.** `fromTo(bg, { autoAlpha: 0 }, { autoAlpha: 1 })` alone is not a transition — it's a fade, and fades feel cheap. Scenes must arrive with directional motion: push (x/y translate) or zoom-settle (scale). The viewer needs a spatial answer to "where did this scene come from?"
 - ❌ **Flat white text on flat black background.** Use chrome gradient and halo glow — costs nothing, looks 10× more expensive.
 - ❌ **6+ colors across the piece.** You're decorating, not communicating.
 - ❌ **No callbacks.** A visual element that appears once and never returns wastes a setup.

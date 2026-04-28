@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Matthew Nicholson — Brand Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E0E0C;
+    --cream: #F2EBDD;
+    --accent: #D8351F;
+    --ink-on-cream: rgba(14,14,12,0.18);
+    --serif: 'Instrument Serif', 'Times New Roman', serif;
+    --sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  html, body { margin: 0; padding: 0; background: #000; }
+  body { font-family: var(--sans); }
+  deck-stage { background: #000; }
+  section { color: var(--cream); }
+
+  @keyframes punchIn {
+    0% { transform: scale(0.4); opacity: 0; }
+    40% { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes tick {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+  @keyframes fluid {
+    0%, 100% { font-weight: 200; letter-spacing: 0.1em; }
+    50% { font-weight: 900; letter-spacing: -0.06em; }
+  }
+  @keyframes stutter {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    20% { transform: translateY(-30px); opacity: 0.8; }
+    40% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes reverseScroll-r {
+    0% { transform: translateX(-25%); }
+    100% { transform: translateX(0%); }
+  }
+  @keyframes reverseScroll-l {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-25%); }
+  }
+</style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080">
+    <section data-label="01 Cover"><div id="s1"></div></section>
+    <section data-label="02 The System"><div id="s2"></div></section>
+    <section data-label="03 Logo & Monogram"><div id="s3"></div></section>
+    <section data-label="04 Color"><div id="s4"></div></section>
+    <section data-label="05 Typography"><div id="s5"></div></section>
+    <section data-label="06 Motion Type Principles"><div id="s6"></div></section>
+    <section data-label="07 Social Templates"><div id="s7"></div></section>
+    <section data-label="08 Voice & Application"><div id="s8"></div></section>
+  </deck-stage>
+
+  <div id="tweaks-root"></div>
+
+  <script src="deck-stage.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="slides.jsx"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "palette": "crimson"
+    }/*EDITMODE-END*/;
+
+    const PALETTES = {
+      crimson: { ink: '#0E0E0C', cream: '#F2EBDD', accent: '#D8351F', label: 'CRIMSON' },
+      cobalt:  { ink: '#0B0F1A', cream: '#EEF1F6', accent: '#1E4FE0', label: 'COBALT' },
+      acid:    { ink: '#0E0E0C', cream: '#F2EBDD', accent: '#C7E000', label: 'ACID' },
+      ember:   { ink: '#1A0F0A', cream: '#F4E9D8', accent: '#FF6A1A', label: 'EMBER' },
+    };
+
+    function App() {
+      const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+      const [activeIdx, setActiveIdx] = React.useState(0);
+
+      // Apply palette
+      React.useEffect(() => {
+        const p = PALETTES[tweaks.palette] || PALETTES.crimson;
+        document.documentElement.style.setProperty('--ink', p.ink);
+        document.documentElement.style.setProperty('--cream', p.cream);
+        document.documentElement.style.setProperty('--accent', p.accent);
+      }, [tweaks.palette]);
+
+      // Listen to slide change for animations
+      React.useEffect(() => {
+        const onMsg = (e) => {
+          if (e.data && typeof e.data.slideIndexChanged === 'number') {
+            setActiveIdx(e.data.slideIndexChanged);
+          }
+        };
+        window.addEventListener('message', onMsg);
+        return () => window.removeEventListener('message', onMsg);
+      }, []);
+
+      return (
+        <window.TweaksPanel title="Tweaks">
+          <window.TweakSection title="Accent palette">
+            <window.TweakSelect
+              label="Palette"
+              value={tweaks.palette}
+              onChange={(v) => setTweak('palette', v)}
+              options={Object.entries(PALETTES).map(([k, v]) => ({ value: k, label: v.label }))}
+            />
+            <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+              {Object.entries(PALETTES).map(([k, v]) => (
+                <button key={k} onClick={() => setTweak('palette', k)} style={{
+                  flex: 1, height: 36, border: tweaks.palette === k ? '2px solid #fff' : '1px solid #444',
+                  background: v.accent, cursor: 'pointer', borderRadius: 4,
+                }} title={v.label} />
+              ))}
+            </div>
+          </window.TweakSection>
+        </window.TweaksPanel>
+      );
+    }
+
+    // mount tweaks
+    ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<App />);
+
+    // mount each slide
+    const slideRefs = [
+      ['s1', () => <Slide01 />],
+      ['s2', () => <Slide02 />],
+      ['s3', () => <Slide03 />],
+      ['s4', () => <Slide04 />],
+      ['s5', () => <Slide05 />],
+      ['s6', null], // dynamic
+      ['s7', null],
+      ['s8', () => <Slide08 />],
+    ];
+
+    // Active-aware mounts for animated slides
+    function ActiveSlide({ idx, render }) {
+      const [active, setActive] = React.useState(false);
+      React.useEffect(() => {
+        const onMsg = (e) => {
+          if (e.data && typeof e.data.slideIndexChanged === 'number') {
+            setActive(e.data.slideIndexChanged === idx);
+          }
+        };
+        window.addEventListener('message', onMsg);
+        return () => window.removeEventListener('message', onMsg);
+      }, [idx]);
+      return render(active);
+    }
+
+    slideRefs.forEach(([id, r], i) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const root = ReactDOM.createRoot(el);
+      if (r) {
+        root.render(r());
+      } else if (i === 5) {
+        root.render(<ActiveSlide idx={5} render={(a) => <Slide06 active={a} />} />);
+      } else if (i === 6) {
+        root.render(<ActiveSlide idx={6} render={(a) => <Slide07 active={a} />} />);
+      }
+    });
+  </script>
+</body>
+</html>

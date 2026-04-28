@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Matthew Nicholson — Brand Kit Reference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0E0E0C;
+    --cream: #F2EBDD;
+    --accent: #D8351F;
+    --rule: rgba(14,14,12,0.18);
+    --serif: 'Instrument Serif', 'Times New Roman', serif;
+    --sans: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  }
+  /* ─── chrome ────────────────────────────────────────────────── */
+  .top-bar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 32px;
+    background: var(--cream); border-bottom: 1px solid var(--ink);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .top-bar a { color: var(--ink); text-decoration: none; border-bottom: 1px solid currentColor; }
+  .top-bar a:hover { color: var(--accent); }
+  .top-bar .live { display: flex; align-items: center; gap: 8px; }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  /* ─── hero ──────────────────────────────────────────────────── */
+  .hero {
+    padding: 80px 48px 64px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .hero .meta {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 32px; opacity: 0.7;
+  }
+  .hero h1 {
+    margin: 0; padding: 0;
+    font-family: var(--sans); font-weight: 800; font-size: clamp(72px, 13vw, 240px);
+    line-height: 0.85; letter-spacing: -0.045em; text-transform: uppercase;
+  }
+  .hero h1 .it {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    text-transform: none; letter-spacing: -0.02em;
+  }
+  .hero .dot { color: var(--accent); }
+  .hero .pillars {
+    margin-top: 48px;
+    display: flex; gap: 48px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .hero .pillars span::before { content: '● '; color: var(--accent); }
+
+  /* ─── section grammar ───────────────────────────────────────── */
+  section.spec {
+    border-bottom: 1px solid var(--ink);
+    display: grid; grid-template-columns: 240px 1fr; gap: 48px;
+    padding: 64px 48px;
+  }
+  section.spec.dark { background: var(--ink); color: var(--cream); border-bottom-color: var(--cream); }
+  section.spec.dark .rule { border-color: rgba(242,235,221,0.2); }
+  .spec .label {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .spec .label .num { display: block; opacity: 0.5; margin-bottom: 4px; }
+  .spec h2 {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(48px, 6vw, 88px); line-height: 0.95; letter-spacing: -0.02em;
+    margin: 0 0 32px;
+  }
+  .spec h2 .alt {
+    font-family: var(--sans); font-style: normal; font-weight: 800;
+    text-transform: uppercase; letter-spacing: -0.035em;
+  }
+  .body-prose {
+    font-family: var(--sans); font-size: 19px; line-height: 1.5; max-width: 720px;
+  }
+
+  /* ─── logo block ────────────────────────────────────────────── */
+  .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .logo-card { border: 1px solid var(--ink); padding: 32px; aspect-ratio: 4 / 3; position: relative; display: flex; align-items: center; justify-content: center; background: var(--cream); }
+  .logo-card.invert { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .logo-card.accent { background: var(--accent); color: var(--cream); border-color: var(--accent); }
+  .logo-card .tag {
+    position: absolute; top: 16px; left: 16px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .wordmark {
+    font-family: var(--sans); font-weight: 800; font-size: 56px; line-height: 0.9;
+    letter-spacing: -0.04em; text-transform: uppercase; text-align: center;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .logo-card.accent .wordmark .dot { color: var(--cream); }
+  .signature {
+    font-family: var(--serif); font-style: italic; font-size: 96px; letter-spacing: -0.02em; line-height: 1;
+  }
+  .signature .dot { font-size: 0.5em; }
+  .monogram { display: flex; align-items: center; justify-content: center; line-height: 1; color: inherit; }
+  .monogram .m-serif { font-family: var(--serif); font-style: italic; font-size: 200px; letter-spacing: -0.04em; position: relative; z-index: 1; }
+  .monogram .m-sans { font-family: var(--sans); font-weight: 800; font-size: 150px; letter-spacing: -0.05em; margin-left: -38px; margin-top: 36px; position: relative; z-index: 2; }
+
+  /* ─── color block ───────────────────────────────────────────── */
+  .swatch-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 32px; }
+  .swatch { aspect-ratio: 1; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+  .swatch .top { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .swatch .name { font-family: var(--sans); font-weight: 800; font-size: 56px; letter-spacing: -0.04em; line-height: 0.9; }
+  .swatch .code { font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; opacity: 0.85; margin-top: 6px; }
+  .swatch.ink { background: var(--ink); color: var(--cream); }
+  .swatch.cream { background: var(--cream); color: var(--ink); border: 1px solid var(--ink); }
+  .swatch.accent { background: var(--accent); color: var(--cream); }
+
+  .ratio-bar { display: flex; height: 12px; margin-top: 24px; border: 1px solid var(--ink); }
+  .ratio-bar .ink-r { flex: 50; background: var(--ink); }
+  .ratio-bar .cream-r { flex: 45; background: var(--cream); border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+  .ratio-bar .accent-r { flex: 5; background: var(--accent); }
+  .ratio-legend {
+    display: flex; gap: 32px; margin-top: 12px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7;
+  }
+
+  /* ─── type specimens ────────────────────────────────────────── */
+  .type-spec { border-top: 1px solid var(--rule); padding: 32px 0; }
+  .type-spec:first-child { border-top: 0; padding-top: 0; }
+  .type-spec .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
+    margin-bottom: 16px;
+  }
+  .type-spec .specimen.serif {
+    font-family: var(--serif); font-style: italic; font-size: clamp(64px, 9vw, 140px);
+    letter-spacing: -0.025em; line-height: 0.95;
+  }
+  .type-spec .specimen.sans {
+    font-family: var(--sans); font-weight: 800; font-size: clamp(56px, 7vw, 110px);
+    letter-spacing: -0.04em; text-transform: uppercase; line-height: 0.95;
+  }
+  .type-spec .specimen.mono {
+    font-family: var(--mono); font-size: clamp(28px, 3vw, 44px); letter-spacing: 0.04em; line-height: 1.2;
+  }
+  .accent-text { color: var(--accent); }
+
+  /* ─── motion principles ─────────────────────────────────────── */
+  .motion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .motion-tile {
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--cream);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .motion-tile .tag {
+    position: absolute; top: 16px; left: 16px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .motion-tile .cap {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; opacity: 0.6;
+  }
+  .kinetic-word {
+    font-family: var(--sans); font-weight: 800; font-size: 110px; letter-spacing: -0.04em;
+    animation: punchIn 1.6s cubic-bezier(.2,.9,.3,1) infinite;
+  }
+  @keyframes punchIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    25% { transform: scale(1.1); opacity: 1; }
+    50%, 80% { transform: scale(1); opacity: 1; }
+    90%, 100% { transform: scale(1); opacity: 0; }
+  }
+  .ticker-row {
+    width: 100%; overflow: hidden; white-space: nowrap;
+    font-family: var(--serif); font-style: italic; font-size: 110px; letter-spacing: -0.02em;
+  }
+  .ticker-row > div {
+    display: inline-block;
+    animation: tick 14s linear infinite;
+  }
+  @keyframes tick {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+  .fluid-word {
+    font-family: var(--sans); font-size: 130px; font-weight: 800; letter-spacing: -0.04em;
+    animation: fluid 3s ease-in-out infinite;
+  }
+  @keyframes fluid {
+    0%, 100% { font-weight: 200; letter-spacing: 0.12em; }
+    50% { font-weight: 900; letter-spacing: -0.06em; }
+  }
+  .stutter-stack { display: flex; gap: 4px; }
+  .stutter-stack span {
+    font-family: var(--sans); font-weight: 800; font-size: 110px; letter-spacing: -0.04em;
+    display: inline-block;
+    animation: stutter 1.8s ease-in-out infinite;
+  }
+  .stutter-stack span:nth-child(2) { animation-delay: 0.08s; }
+  .stutter-stack span:nth-child(3) { animation-delay: 0.16s; }
+  .stutter-stack span:nth-child(4) { animation-delay: 0.24s; color: var(--accent); }
+  @keyframes stutter {
+    0%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-30px); }
+    40% { transform: translateY(0); }
+  }
+
+  /* reverse stack */
+  .reverse-tile { padding: 0; }
+  .reverse-stack {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+  }
+  .r-row {
+    white-space: nowrap; overflow: hidden;
+    font-family: var(--sans); font-weight: 800;
+    font-size: 56px; line-height: 1; letter-spacing: -0.03em;
+    color: transparent; -webkit-text-stroke: 1.5px var(--cream);
+    opacity: 0.85;
+  }
+  .r-row.r-hi {
+    color: var(--accent); -webkit-text-stroke: 0;
+    background: var(--cream); padding: 6px 0; margin: 4px 0;
+  }
+  .r-row > div { display: inline-block; }
+  .r-row.r-r > div { animation: reverseScrollR linear infinite; }
+  .r-row.r-l > div { animation: reverseScrollL linear infinite; }
+  @keyframes reverseScrollR {
+    0% { transform: translateX(-25%); } 100% { transform: translateX(0%); }
+  }
+  @keyframes reverseScrollL {
+    0% { transform: translateX(0%); } 100% { transform: translateX(-25%); }
+  }
+
+  /* ─── templates ─────────────────────────────────────────────── */
+  .templates { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .phone {
+    aspect-ratio: 9/16; padding: 24px;
+    display: flex; flex-direction: column;
+    font-family: var(--sans);
+  }
+  .phone .ep { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; opacity: 0.7; text-transform: uppercase; }
+  .phone .h {
+    font-family: var(--serif); font-style: italic; font-size: 56px; line-height: 0.95; letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+  .phone .h.sans {
+    font-family: var(--sans); font-style: normal; font-weight: 800; text-transform: uppercase; letter-spacing: -0.04em;
+  }
+  .phone .foot {
+    margin-top: auto; display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .phone.tech { background: var(--ink); color: var(--cream); }
+  .phone.run { background: var(--cream); color: var(--ink); border: 1px solid var(--ink); }
+  .phone.life { background: var(--accent); color: var(--cream); }
+
+  /* ─── voice ─────────────────────────────────────────────────── */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px; }
+  .voice-col h4 {
+    margin: 0 0 16px; padding-bottom: 8px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+  }
+  .voice-col ul { list-style: none; padding: 0; margin: 0; font-family: var(--sans); font-size: 17px; line-height: 1.6; }
+  .voice-col li::before { content: '— '; opacity: 0.5; }
+  .voice-col.dont h4 { color: var(--accent); }
+  .voice-col.dont li { opacity: 0.6; }
+
+  /* ─── usage table ───────────────────────────────────────────── */
+  .table-wrap { margin-top: 32px; }
+  table.usage {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em;
+  }
+  table.usage th, table.usage td {
+    text-align: left; padding: 14px 0; border-bottom: 1px solid var(--rule);
+    text-transform: uppercase;
+  }
+  table.usage th { opacity: 0.5; font-weight: 400; }
+
+  /* ─── footer ────────────────────────────────────────────────── */
+  footer {
+    padding: 64px 48px 48px;
+    background: var(--ink); color: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end;
+  }
+  footer .big {
+    font-family: var(--sans); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(56px, 8vw, 120px); line-height: 0.9; letter-spacing: -0.04em;
+  }
+  footer .meta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; line-height: 1.8; }
+  footer a { color: var(--accent); text-decoration: underline; }
+
+  @media (max-width: 880px) {
+    section.spec { grid-template-columns: 1fr; gap: 24px; padding: 48px 24px; }
+    .hero { padding: 48px 24px; }
+    .swatch-row, .logo-grid, .motion-grid, .templates, .voice-grid, footer { grid-template-columns: 1fr !important; }
+    .top-bar { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>MATTHEW NICHOLSON ® BRAND KIT v1.0</span>
+  <span class="live"><span class="live-dot"></span> 27/04/26 · REFERENCE DOC</span>
+  <a href="Brand Kit Deck.html">← BACK TO DECK</a>
+</div>
+
+<header class="hero">
+  <div class="meta">A REFERENCE FOR DESIGNERS & EDITORS / RELAXED · FUNNY · PERSONAL</div>
+  <h1><span class="it">Matthew</span><br>NICHOLSON<span class="dot">.</span></h1>
+  <div class="pillars">
+    <span>TECH</span><span>RUNNING</span><span>LIFESTYLE</span>
+  </div>
+</header>
+
+<!-- 01 LOGO -->
+<section class="spec">
+  <div class="label"><span class="num">NO.01</span>LOGO &<br>MONOGRAM</div>
+  <div>
+    <h2>One mark.<br><span class="alt">Three faces.</span></h2>
+    <p class="body-prose">The MN monogram is the locked-up version — use it as a watermark, an avatar, or anywhere the full name won't fit. The wordmark is the formal signature; the italic <em>matthew</em> is the casual one. Pick the face that matches the vibe.</p>
+
+    <div class="logo-grid">
+      <div class="logo-card">
+        <span class="tag">MONOGRAM / DEFAULT</span>
+        <div class="monogram"><span class="m-serif">M</span><span class="m-sans">N</span></div>
+      </div>
+      <div class="logo-card invert">
+        <span class="tag">MONOGRAM / INVERSE</span>
+        <div class="monogram"><span class="m-serif">M</span><span class="m-sans">N</span></div>
+      </div>
+      <div class="logo-card">
+        <span class="tag">WORDMARK</span>
+        <div class="wordmark">MATTHEW<br>NICHOLSON<span class="dot">.</span></div>
+      </div>
+      <div class="logo-card accent">
+        <span class="tag">SIGNATURE</span>
+        <div class="signature">matthew<span class="dot" style="color:var(--cream)">.</span></div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="usage">
+        <thead><tr><th>RULE</th><th>VALUE</th></tr></thead>
+        <tbody>
+          <tr><td>CLEAR SPACE</td><td>= HEIGHT OF "M"</td></tr>
+          <tr><td>MIN DIGITAL SIZE</td><td>32PX</td></tr>
+          <tr><td>MIN PRINT SIZE</td><td>0.4 IN</td></tr>
+          <tr><td>NEVER</td><td>STRETCH · OUTLINE · DROP-SHADOW</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COLOR -->
+<section class="spec">
+  <div class="label"><span class="num">NO.02</span>COLOR</div>
+  <div>
+    <h2>Three colors.<br><span class="alt">That's the rule.</span></h2>
+    <p class="body-prose">Ink and cream do 95% of the work. The accent is loud on purpose — use it for one thing per frame, never as a background for body copy. If you find yourself reaching for a fourth color, you don't need a fourth color. You need to delete something.</p>
+
+    <div class="swatch-row">
+      <div class="swatch ink">
+        <span class="top">PRIMARY · INK</span>
+        <div>
+          <div class="name">INK</div>
+          <div class="code">#0E0E0C · OKLCH(0.13 0.005 80)</div>
+        </div>
+      </div>
+      <div class="swatch cream">
+        <span class="top">PRIMARY · CREAM</span>
+        <div>
+          <div class="name">CREAM</div>
+          <div class="code">#F2EBDD · OKLCH(0.94 0.018 85)</div>
+        </div>
+      </div>
+      <div class="swatch accent">
+        <span class="top">ACCENT</span>
+        <div>
+          <div class="name">CRIMSON</div>
+          <div class="code">#D8351F · OKLCH(0.58 0.196 28)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ratio-bar"><div class="ink-r"></div><div class="cream-r"></div><div class="accent-r"></div></div>
+    <div class="ratio-legend"><span>50% INK</span><span>45% CREAM</span><span>5% ACCENT</span></div>
+
+    <div class="table-wrap">
+      <table class="usage">
+        <thead><tr><th>SURFACE</th><th>BG</th><th>FG</th><th>ACCENT USE</th></tr></thead>
+        <tbody>
+          <tr><td>VIDEO TITLES</td><td>INK</td><td>CREAM</td><td>1 WORD MAX</td></tr>
+          <tr><td>LOWER-THIRDS</td><td>INK</td><td>CREAM</td><td>UNDERLINE / DOT</td></tr>
+          <tr><td>COVERS</td><td>EITHER</td><td>EITHER</td><td>PUNCHLINE WORD</td></tr>
+          <tr><td>SPONSOR FRAMES</td><td>CREAM</td><td>INK</td><td>NEVER</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TYPOGRAPHY -->
+<section class="spec dark">
+  <div class="label"><span class="num">NO.03</span>TYPOGRAPHY</div>
+  <div>
+    <h2>Serif for feeling.<br><span class="alt">Sans for facts.</span></h2>
+    <p class="body-prose">A loose rule: italic serif when Matthew is being a person. Bold sans when he's being a headline. Mono for anything machine-y — pace, timestamps, file names, channel meta.</p>
+
+    <div style="margin-top: 32px;">
+      <div class="type-spec">
+        <div class="meta"><span>DISPLAY · INSTRUMENT SERIF · ITALIC</span><span>EMOTIVE / EDITORIAL</span></div>
+        <div class="specimen serif">probably faster than <span class="accent-text">you.</span></div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><span>HEADLINE · GEIST · 800</span><span>DECLARATIVE / PUNCHLINE</span></div>
+        <div class="specimen sans">I RAN 13.1 MILES <span class="accent-text">BAD.</span></div>
+      </div>
+      <div class="type-spec">
+        <div class="meta"><span>UTILITY · GEIST MONO · 500</span><span>LABELS / META / CAPTIONS</span></div>
+        <div class="specimen mono">// EP.014 — TECH · 03:42 · MILE 11 · PACE 7:42<br><span style="opacity:0.5">MATTHEWNICHOLSON.COM / @MATTHEW</span></div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="usage" style="color: inherit;">
+        <thead><tr><th>USE</th><th>FAMILY</th><th>MIN SIZE (VIDEO)</th></tr></thead>
+        <tbody>
+          <tr><td>TITLE CARD</td><td>SERIF ITALIC</td><td>96PX @ 1080</td></tr>
+          <tr><td>HEADLINE / KINETIC</td><td>SANS 800</td><td>72PX @ 1080</td></tr>
+          <tr><td>BODY CAPTION</td><td>SANS 600</td><td>40PX @ 1080</td></tr>
+          <tr><td>META / TIMESTAMP</td><td>MONO 500</td><td>24PX @ 1080</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MOTION -->
+<section class="spec dark">
+  <div class="label"><span class="num">NO.04</span>MOTION TYPE<br>PRINCIPLES</div>
+  <div>
+    <h2>Type that moves<br><span class="alt">Like he talks.</span></h2>
+    <p class="body-prose">Four moves. Pick one per beat — never stack them. Every motion lands on a still frame for at least 8 frames so the eye can read it before the next gag.</p>
+
+    <div class="motion-grid">
+      <div class="motion-tile">
+        <span class="tag">01 / KINETIC</span>
+        <span class="cap">// punch in, settle, hold.</span>
+        <div class="kinetic-word">RUN.</div>
+      </div>
+      <div class="motion-tile">
+        <span class="tag">02 / SCROLLING</span>
+        <span class="cap">// endless ticker, single line.</span>
+        <div class="ticker-row"><div>matthew · matthew · matthew · matthew · matthew · matthew · matthew · matthew · matthew · </div></div>
+      </div>
+      <div class="motion-tile">
+        <span class="tag">03 / FLUID</span>
+        <span class="cap">// weight + width morph in place.</span>
+        <div class="fluid-word">FLUID</div>
+      </div>
+      <div class="motion-tile reverse-tile" style="grid-column: span 2; aspect-ratio: 32/10;">
+        <span class="tag">05 / REVERSE</span>
+        <span class="cap">// stacked bands, alternating scroll.</span>
+        <div class="reverse-stack">
+          <div class="r-row r-r" style="animation-duration:14s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-l" style="animation-duration:18s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-r" style="animation-duration:22s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-hi"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-l" style="animation-duration:20s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-r" style="animation-duration:16s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+          <div class="r-row r-l" style="animation-duration:24s"><div>REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE REVERSE </div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="usage" style="color: inherit;">
+        <thead><tr><th>PRINCIPLE</th><th>USE FOR</th><th>EASING</th><th>HOLD</th></tr></thead>
+        <tbody>
+          <tr><td>KINETIC</td><td>PUNCHLINES, REVEALS</td><td>OUT-BACK</td><td>0.5–1.0S</td></tr>
+          <tr><td>SCROLLING</td><td>NAME TAGS, TRANSITIONS</td><td>LINEAR</td><td>LOOP</td></tr>
+          <tr><td>FLUID</td><td>EMOTIONAL BEATS</td><td>EASE-IN-OUT</td><td>2–3S</td></tr>
+          <tr><td>STUTTER</td><td>HYPE / COMEDIC TIMING</td><td>SPRING</td><td>0.3S</td></tr>
+          <tr><td>REVERSE</td><td>RIPPLES, MOTIFS, BREAKS</td><td>LINEAR</td><td>LOOP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 05 TEMPLATES -->
+<section class="spec">
+  <div class="label"><span class="num">NO.05</span>SOCIAL<br>TEMPLATES</div>
+  <div>
+    <h2>Three covers.<br><span class="alt">One grammar.</span></h2>
+    <p class="body-prose">Every cover has the same four parts: episode label, oversized headline, signature dot, channel tag. The proportions stay; the colors and type face swap. That's the system.</p>
+
+    <div class="templates">
+      <div class="phone tech">
+        <div class="ep">EP.014</div>
+        <div class="h">I bought<br>the <span class="accent-text">worst</span><br>laptop on<br>amazon.</div>
+        <div class="foot"><span>● MN</span><span>TECH</span></div>
+      </div>
+      <div class="phone run">
+        <div class="ep">EP.022</div>
+        <div class="h sans">I RAN<br>13.1<br>MILES<br><span class="accent-text">BAD.</span></div>
+        <div class="foot"><span>● MN</span><span>RUNNING</span></div>
+      </div>
+      <div class="phone life">
+        <div class="ep">EP.031</div>
+        <div class="h">a day<br>where i<br>did <u>nothing</u><br>useful.</div>
+        <div class="foot"><span>● MN</span><span>LIFESTYLE</span></div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="usage">
+        <thead><tr><th>SLOT</th><th>SPEC</th></tr></thead>
+        <tbody>
+          <tr><td>FORMAT</td><td>9:16 · 1080×1920 · SAFE 60PX</td></tr>
+          <tr><td>HEADLINE</td><td>SERIF ITAL OR SANS 800 · 4 LINES MAX</td></tr>
+          <tr><td>EPISODE TAG</td><td>MONO · TOP-LEFT · 24PX</td></tr>
+          <tr><td>CHANNEL TAG</td><td>MONO · BOTTOM-RIGHT · 24PX</td></tr>
+          <tr><td>ACCENT</td><td>EXACTLY ONE WORD UNDERLINED OR COLORED</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 06 VOICE -->
+<section class="spec">
+  <div class="label"><span class="num">NO.06</span>VOICE &<br>TONE</div>
+  <div>
+    <h2>Sound like<br><span class="alt">A friend.</span></h2>
+    <p class="body-prose">The brand is one person who's a little tired, very curious, and genuinely amused by his own life. Write captions in that voice. Cut anything that sounds like a press release. If a sentence wouldn't survive being read out loud at a coffee shop, rewrite it.</p>
+
+    <div class="voice-grid">
+      <div class="voice-col">
+        <h4>✓ DO</h4>
+        <ul>
+          <li>write like you talk.</li>
+          <li>one joke per video.</li>
+          <li>admit when something is mid.</li>
+          <li>use lower-case in captions.</li>
+          <li>land the punchline on the last frame.</li>
+        </ul>
+      </div>
+      <div class="voice-col dont">
+        <h4>✗ DON'T</h4>
+        <ul>
+          <li>say "synergy", "leverage", or "unlock".</li>
+          <li>use three exclamation marks.</li>
+          <li>overpromise in the title.</li>
+          <li>forget the punchline.</li>
+          <li>shout at the audience.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">END OF<br>DOC<span style="color:var(--accent)">.</span></div>
+  <div class="meta">
+    MATTHEW NICHOLSON ® BRAND KIT v1.0<br>
+    UPDATED 27/04/26 · DESIGNERS & EDITORS<br>
+    <a href="Brand Kit Deck.html">← BACK TO DECK</a><br>
+    QUESTIONS? ASK THE MAN HIMSELF.
+  </div>
+</footer>
+
+</body>
+</html>
